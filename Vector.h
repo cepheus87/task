@@ -17,8 +17,18 @@ public:
     Vector() : _size(0), _data(NULL) {}
     Vector(unsigned int siz) : _size(siz), _data(NULL) {}
     Vector(int siz, ...);
+    Vector(const Vector& vec);
 
     friend ostream& operator<<(ostream& outStr, const Vector& vec);
+
+    Vector& operator++();
+    Vector operator++(int);
+
+    Vector& operator=(const Vector& vec);
+
+    Vector operator+(const Vector& vec);
+
+    static Vector create(int siz, ...);
 
     ~Vector();
 };

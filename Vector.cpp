@@ -5,14 +5,24 @@
 
 Vector::Vector(int siz, ...) : _size( (static_cast<unsigned int>(siz) ) ), _data(NULL)
 {
-	// http://www.cse.unt.edu/~donr/courses/4410/NOTES/stdarg/
 	_data = new double[_size];
 	va_list arg;
 	va_start (arg, siz);
-	for (unsigned int i = 0 ; i< siz; i++) {
+	for (int i = 0 ; i< siz; i++) {
 		_data[i] = va_arg(arg, double);
 	}
 	va_end (arg);
+}
+
+Vector::Vector(const Vector& vec){
+	_size = vec._size;
+	if(_size > 0){
+		_data = new double[_size];
+	}
+	for(unsigned i=0; i< _size; i++){
+		_data[i] = vec._data[i];
+	}
+
 }
 
 Vector::~Vector()
@@ -58,24 +68,63 @@ ostream& operator<<(ostream& outStr, const Vector& vec)
 	return outStr;
 }
 
-/*
-{
-	const char charCoords[] = "     A   B   C   D   E   F   G   H";
-	const char horLine[]    = "   +---+---+---+---+---+---+---+---+";
-	gotoXY(0, BOARD_POS);
-	outStr << charCoords << endl;
-	outStr << horLine << endl;
-
-	for (int i = BOARD_SIZE - 1; i >= 0; i--) {
-		outStr << setw(2) << i + 1 << " ";
-		for (unsigned j = 0; j < BOARD_SIZE; j++) {
-			outStr << "| " << b.b[i][j] << " ";
-		}
-		outStr << "| " << i + 1 << endl;
-		outStr << horLine << endl;
+// pre
+Vector& Vector::operator++(){
+	for(unsigned i=0; i< _size; i++){
+		_data[i] += 1.0;
 	}
-	outStr << charCoords << endl;
-
-    return outStr;
+	return *this;
 }
-*/
+
+//post
+Vector Vector::operator++(int){
+	Vector temp(*this);
+	operator++();
+	return temp;
+}
+
+Vector& Vector::operator=(const Vector& vec){
+
+	if(this != &vec){
+		delete[] _data;
+		_size = vec._size;
+		_data = new double[_size];
+		for(unsigned i=0; i< _size; i++){
+			_data[i] = vec._data[i];
+		}
+	}
+
+	return *this;
+}
+
+Vector Vector::create(int siz, ...)
+{
+	Vector vec(siz);
+	delete[] vec._data;
+	vec._data = new double[siz];
+
+	va_list arg;
+	va_start (arg, siz);
+	for (int i = 0 ; i< siz; i++) {
+		vec._data[i] = va_arg(arg, double);
+	}
+
+	va_end (arg);
+
+	return vec;
+
+}
+
+Vector Vector::operator+(const Vector& vec)
+{
+
+	Vector temp(*this);
+	for(unsigned i=0; i< _size; i++){
+		temp._data[i] += vec._data[i];
+	}
+	return temp;
+
+}
+
+
+

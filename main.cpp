@@ -27,22 +27,26 @@ int main() {
 	 cout << "3b) " << c1 << endl;  
 	 cout << "3c) " << c2 << endl;  
 
-		cin.ignore();
-		/*
+
+
 
 	 Vector c3(c);
 	 cout << "3d) " << c3 << endl;               // 3d) (1.03, 2.12, 3.25, 4.44)
+
+
 
 	 //------------------------------------------------------------------------------
 
 	 Vector c4 = c++;  
 	 cout << "4a) " << c << endl;                // 4a) (2.03, 3.12, 4.25, 5.44)
 	 cout << "4b) " << c4 << endl;               // 4b) (1.03, 2.12, 3.25, 4.44)
-	 c4 = c4;                                    // UWAGA! Nawet jeśli będzie się kompilować i nawet jeśli będzie działać, to w definicji operatora może byc błąd
+
+	 //c4 = c4;                                    // UWAGA! Nawet jeśli będzie się kompilować i nawet jeśli będzie działać, to w definicji operatora może byc błąd
+	 // Moj kompilator nie pozwala na takie przypisanie
 	 cout << "4c) " << c4 << endl;               // 4c) (1.03, 2.12, 3.25, 4.44)
 
 	 //------------------------------------------------------------------------------
-
+/*
 	 c++++;  
 	 cout << "5) " << c << endl;                 // 5) (4.03, 4.12, 5.25, 6.44)
 
@@ -52,7 +56,7 @@ int main() {
 	 cout << "6) " << c << endl;                 // 6) (5.03, 6.12, 7.25, 8.44)
 
 	 //------------------------------------------------------------------------------
-
+*/
 	 Vector d = Vector::create(5, 0.0, 1.0, 2.0, 3.0, 4.0);
 	 // generalnie zmiast konstruktora z dowolną liczbą parametrów, tworzymy metodę z dowolną liczbą parametrów, która tworzy obiekty klasy Vector
 	 cout << "7) " << d << endl;                 // 7) (0, 1, 2, 3, 4)
@@ -63,6 +67,8 @@ int main() {
 	 cout << "8a) " << d << endl;                // 8a) (1, 2, 3, 4, 5)
 	 cout << "8b) " << d1 << endl;               // 8b) (1, 2, 3, 4, 5)
 
+
+
 	 //------------------------------------------------------------------------------
 
 	 ++++d;  
@@ -70,6 +76,7 @@ int main() {
 
 	 ++++++d;  
 	 cout << "9b) " << d << endl;                // 9b) (6, 7, 8, 9, 10)
+
 
 	 //------------------------------------------------------------------------------
 
@@ -79,6 +86,9 @@ int main() {
 	 cout << "10a) " << d << endl;               // 10a) (6, 7, 8, 9, 10)
 	 cout << "10b) " << e << endl;               // 10b) (-1, -2, -3, -4, -5)
 	 cout << "10c) " << f << endl;               // 10c) (5, 5, 5, 5, 5)
+
+	 cin.ignore();
+	 /*
 
 	 //------------------------------------------------------------------------------
 
